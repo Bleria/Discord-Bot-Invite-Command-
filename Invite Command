@@ -1,0 +1,25 @@
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+
+import java.awt.*;
+
+public class InviteC extends ListenerAdapter {
+
+    @Override
+    public void onMessageReceived(MessageReceivedEvent e) {
+        if (e.getMessage().getContentRaw().equals("!invite")) {
+            e.getChannel().sendMessage(createEmbed()).queue();
+        }
+    }
+
+    public MessageEmbed createEmbed() {
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+        embedBuilder.setTitle("Invite Link:");
+        embedBuilder.addField("Hole den Game Bot zu deinem Server:", "Beliebiges Foto(Link hier rein)", true);
+        embedBuilder.setColor(Color.BLUE);
+        embedBuilder.setFooter("Create by BlerianDev #8530");
+        return embedBuilder.build();
+    }
+}
